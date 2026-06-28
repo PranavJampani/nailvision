@@ -581,7 +581,7 @@ with results_tab:
         st.plotly_chart(fig_radar, use_column_width=True)
     with right:
         st.markdown("<div class='glass-card readable'><div class='card-title'>📋 Classification Report</div><p>Precision shows how reliable a prediction is. Recall shows how many true examples were found. F1 balances both.</p></div>", unsafe_allow_html=True)
-        st.dataframe(REPORT_DF, use_column_width=True, hide_index=True)
+        st.dataframe(REPORT_DF, use_container_width=True, hide_index=True)
 
     if os.path.exists("confusion_matrix.png"):
         st.subheader("Confusion Matrix")
@@ -692,7 +692,7 @@ with about_tab:
             "Prepared the app for public hosting."
         ]
     })
-    st.dataframe(timeline, use_column_width=True, hide_index=True)
+    st.dataframe(timeline, use_container_width=True, hide_index=True)
 
     st.markdown("""
     <div class="glass-card readable">
