@@ -511,7 +511,7 @@ with demo_tab:
 
             left, right = st.columns([.92, 1.08])
             with left:
-                st.image(image, caption="Uploaded Image", use_container_width=True)
+                st.image(image, caption="Uploaded Image", use_column_width=True)
                 st.markdown("<div class='warning-note'>Educational output only — not medical diagnosis.</div>", unsafe_allow_html=True)
             with right:
                 st.markdown(f"""
@@ -522,7 +522,7 @@ with demo_tab:
                   <p class="small-muted">The chart below shows the model's confidence across all classes.</p>
                 </div>
                 """, unsafe_allow_html=True)
-                st.plotly_chart(confidence_chart(predictions), use_container_width=True)
+                st.plotly_chart(confidence_chart(predictions), use_column_width=True)
         else:
             st.info("Upload an image to run a prediction.")
 
@@ -557,7 +557,7 @@ with results_tab:
         font=dict(color="#E2E8F0"),
         coloraxis_showscale=False,
     )
-    st.plotly_chart(fig_metric, use_container_width=True)
+    st.plotly_chart(fig_metric, use_column_width=True)
 
     left, right = st.columns([1, 1])
     with left:
@@ -578,14 +578,14 @@ with results_tab:
             paper_bgcolor="rgba(0,0,0,0)",
             font=dict(color="#E2E8F0"),
         )
-        st.plotly_chart(fig_radar, use_container_width=True)
+        st.plotly_chart(fig_radar, use_column_width=True)
     with right:
         st.markdown("<div class='glass-card readable'><div class='card-title'>📋 Classification Report</div><p>Precision shows how reliable a prediction is. Recall shows how many true examples were found. F1 balances both.</p></div>", unsafe_allow_html=True)
-        st.dataframe(REPORT_DF, use_container_width=True, hide_index=True)
+        st.dataframe(REPORT_DF, use_column_width=True, hide_index=True)
 
     if os.path.exists("confusion_matrix.png"):
         st.subheader("Confusion Matrix")
-        st.image("confusion_matrix.png", use_container_width=True)
+        st.image("confusion_matrix.png", use_column_width=True)
     else:
         st.info("Optional: add confusion_matrix.png to the project folder to display it here.")
 
@@ -603,7 +603,7 @@ with gallery_tab:
             with cols[i % 4]:
                 try:
                     img = Image.open(path).convert("RGB")
-                    st.image(img, use_container_width=True)
+                    st.image(img, use_column_width=True)
                     st.caption(Path(path).name)
                     if st.button("Analyze", key=f"analyze_{i}"):
                         if model is None:
@@ -620,7 +620,7 @@ with gallery_tab:
             st.subheader("Selected Sample Prediction")
             c1, c2 = st.columns([.9, 1.1])
             with c1:
-                st.image(Image.open(path).convert("RGB"), caption=Path(path).name, use_container_width=True)
+                st.image(Image.open(path).convert("RGB"), caption=Path(path).name, use_column_width=True)
             with c2:
                 confidence = predictions[idx] * 100
                 st.markdown(f"""
@@ -630,7 +630,7 @@ with gallery_tab:
                     <h3 style="color:#F8FAFC;">Confidence: {confidence:.2f}%</h3>
                 </div>
                 """, unsafe_allow_html=True)
-                st.plotly_chart(confidence_chart(predictions, "Sample Confidence Scores"), use_container_width=True)
+                st.plotly_chart(confidence_chart(predictions, "Sample Confidence Scores"), use_column_width=True)
 
 # =====================================================
 # TECHNOLOGY
@@ -692,7 +692,7 @@ with about_tab:
             "Prepared the app for public hosting."
         ]
     })
-    st.dataframe(timeline, use_container_width=True, hide_index=True)
+    st.dataframe(timeline, use_column_width=True, hide_index=True)
 
     st.markdown("""
     <div class="glass-card readable">
